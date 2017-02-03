@@ -7,5 +7,95 @@
     android:background="@color/startActivityColor"
     tools:context="com.pensar.tabkids.appstore.makeaword.MainActivity">
 
+    <include
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        layout="@layout/text_layout_vertical_left"
+        android:layout_alignParentLeft="true" />
+    <include
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/text_layout_horizontal_top"
+        android:layout_alignParentTop="true" />
+    <include
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        layout="@layout/text_layout_vertical_right"
+        android:layout_alignParentRight="true" />
+    <include
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/text_layout_horizontal_buttom"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_alignBaseline="@+id/left"
+        android:weightSum="4"
+        android:layout_below="@+id/top"
+        android:layout_above="@+id/buttom"
+        android:layout_toLeftOf="@+id/right"
+        android:layout_toRightOf="@+id/left">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:background="@drawable/welcome"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2.5">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_weight=".5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_weight=".5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_weight=".5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_weight=".5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_weight=".5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
