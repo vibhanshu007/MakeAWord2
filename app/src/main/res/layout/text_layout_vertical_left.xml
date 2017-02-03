@@ -7,29 +7,19 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textA"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textB"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textC"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textD"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textE"
+        style="@style/TextStyle"/>
 
 </LinearLayout>

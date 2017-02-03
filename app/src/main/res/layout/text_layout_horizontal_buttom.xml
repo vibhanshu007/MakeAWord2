@@ -7,70 +7,29 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/text_19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textS"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textT"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textU"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textV"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
-
+        android:id="@+id/textW"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textX"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textY"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_horizontal_margin"
-        android:text="A"/>
+        android:id="@+id/textZ"
+        style="@style/TextStyle"/>
 
 
 </LinearLayout>

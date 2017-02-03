@@ -7,29 +7,20 @@
     android:gravity="center_vertical">
 
     <TextView
-        android:id="@+id/text_14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textN"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textO"
+        style="@style/TextStyle" />
+
     <TextView
-        android:id="@+id/text_16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textP"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textQ"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textR"
+        style="@style/TextStyle"/>
 
 </LinearLayout>

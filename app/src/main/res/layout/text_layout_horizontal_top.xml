@@ -7,45 +7,28 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/text_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textF"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textG"
+        style="@style/TextStyle"/>
     <TextView
-        android:id="@+id/text_8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textH"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textI"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textJ"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textK"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
+        android:id="@+id/textL"
+        style="@style/TextStyle" />
     <TextView
-        android:id="@+id/text_13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"/>
-
+        android:id="@+id/textM"
+        style="@style/TextStyle" />
 
 </LinearLayout>
