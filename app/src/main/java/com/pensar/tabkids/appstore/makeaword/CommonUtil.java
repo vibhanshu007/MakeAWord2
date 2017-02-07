@@ -66,4 +66,30 @@ public class CommonUtil {
         }
         return nameList;
     }
+
+    public static ArrayList<String> spliteString(String imageName){
+        ArrayList<String> optionList = new ArrayList<String>();
+        char option[]=imageName.toCharArray();
+        for (int i = 0;i < option.length; i++){
+            optionList.add(String.valueOf(option[i]).toUpperCase());
+
+        }
+        return optionList;
     }
+
+    public static boolean isPointInsideView(float x, float y, View view){
+        int location[] = new int[2];
+        view.getLocationOnScreen(location);
+        int viewX = location[0];
+        int viewY = location[1];
+        //Log.e("", "viewX = "+viewX+"viewY = "+viewY);
+        //point is inside view bounds
+        return (x > viewX - view.getWidth() / 2 && x < (viewX + view.getWidth())) &&
+                (y > viewY - view.getHeight() / 2 && y < (viewY + view.getHeight()));
+    }
+
+    public static int id(Context context,int position,String commonText,String type){
+        int id=context.getResources().getIdentifier(commonText+""+position,type,context.getPackageName());
+        return id;
+    }
+}

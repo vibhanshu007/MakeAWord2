@@ -7,7 +7,7 @@
     android:background="@color/startActivityColor"
     tools:context="com.pensar.tabkids.appstore.makeaword.MainActivity">
 
-    <include
+    <!--<include
         android:id="@+id/left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         layout="@layout/text_layout_vertical_right"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true" />-->
     <include
         android:id="@+id/buttom"
         android:layout_width="match_parent"
@@ -32,63 +32,63 @@
         layout="@layout/text_layout_horizontal_buttom"
         android:layout_alignParentBottom="true"/>
 
+    <TextView
+        android:id="@+id/textHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/heding"
+        android:gravity="center_horizontal"
+        style="@style/TextHeding"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_centerInParent="true"
-        android:layout_alignBaseline="@+id/left"
         android:weightSum="4"
-        android:layout_below="@+id/top"
-        android:layout_above="@+id/buttom"
-        android:layout_toLeftOf="@+id/right"
-        android:layout_toRightOf="@+id/left">
+        android:layout_below="@+id/textHeading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp">
 
-        <ImageButton
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+        <ImageView
+            android:id="@+id/questionImage"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
             android:layout_weight="1"
-            android:layout_gravity="center"
-            android:scaleType="centerInside"
-            android:background="@drawable/hat"/>
+            android:background="@drawable/rectangle_shape"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/five"
             android:layout_gravity="center_vertical"
             android:layout_weight="3">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:gravity="center"
+                android:id="@+id/textAns0"
+                style="@style/TextStyle"
                 android:textSize="25dp"
-                android:background="@drawable/rectangle_shape"
+                android:background="@drawable/blank"
                 android:layout_weight=".5"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:gravity="center"
-                android:background="@drawable/rectangle_shape"
+                android:id="@+id/textAns1"
+                style="@style/TextStyle"
+                android:background="@drawable/blank"
                 android:textSize="25dp"
                 android:layout_weight=".5"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:gravity="center"
-                android:background="@drawable/rectangle_shape"
+                android:id="@+id/textAns2"
+                style="@style/TextStyle"
+                android:background="@drawable/blank"
                 android:textSize="25dp"
                 android:layout_weight=".5"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:gravity="center"
-                android:background="@drawable/rectangle_shape"
+                android:id="@+id/textAns4"
+                style="@style/TextStyle"
+                android:background="@drawable/blank"
                 android:textSize="25dp"
                 android:layout_weight=".5"/>
             <!--<TextView
