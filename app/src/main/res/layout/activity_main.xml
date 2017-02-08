@@ -86,7 +86,7 @@
                 android:textSize="25dp"
                 android:layout_weight=".5"/>
             <TextView
-                android:id="@+id/textAns4"
+                android:id="@+id/textAns3"
                 style="@style/TextStyle"
                 android:background="@drawable/blank"
                 android:textSize="25dp"

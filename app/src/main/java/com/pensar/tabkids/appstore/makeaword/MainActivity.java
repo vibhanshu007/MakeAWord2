@@ -1,6 +1,7 @@
 package com.pensar.tabkids.appstore.makeaword;
 
 import android.graphics.Point;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,24 +20,19 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+
     private boolean isTouch;
-    DragAndDrop dragAndDrop;
     MainActivity mainActivity;
     int windowWidth,windowHeight;
-    ArrayList<String> threeLetterName;
-    ArrayList<String> fourLetterName;
     ArrayList<String> questionList;
-    ArrayList<String> questionListWithoutPng;
-    ArrayList<String> optionList;
-    ImageView questionImage;
-    int counter=0;
-    int teacherOption;
+    DragAndDrop dragAndDrop;
+    int counter=0,teacherOption;
+    String temp;
     HashMap<Integer,TextView> map;
     private static final int TOTAL_OPTIONS=8;
-    int background[] ={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable
-            .five,R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine,R.drawable
-            .ten};
+    int background[] ={R.drawable.one,R.drawable.two,R.drawable.three,
+            R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine,R.drawable.ten};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +40,7 @@ public class MainActivity extends AppCompatActivity {
         dragAndDrop = new DragAndDrop(mainActivity);
         map=new HashMap<Integer, TextView>();
         questionList = new ArrayList<String>();
-        optionList = new ArrayList<>();
-        Display display = getWindowManager().getDefaultDisplay();
-        Point resolution = new Point();
-        display.getSize(resolution);
-        windowWidth=resolution.x;
-        windowHeight=resolution.y;
+        getResolution();
         CommonUtil.hideSystemUI(getWindow().getDecorView());
 
 
@@ -70,34 +61,41 @@ public class MainActivity extends AppCompatActivity {
             textView.setOnTouchListener(new DragAndDrop(this));
         }*/
         //For button textOption..
+        getQuestionList();
+        startApp();
+    }
 
-        threeLetterName = CommonUtil.listAssetFiles(this,"3 letters");
-        fourLetterName = CommonUtil.listAssetFiles(this,"4 letters");
-        Log.e("threeLetterName",""+threeLetterName);
-        Log.e("fourLetterName",""+fourLetterName);
-        Log.e("getQuestionList",""+getQuestionList());
-
-
+    public void startApp(){
 
 
         String question=questionList.get(counter);
-        Log.e("teacherOption",""+teacherOption);
-        textView = (TextView) findViewById(R.id.textAns4);
+        TextView textView = (TextView) findViewById(R.id.textAns3);
         String folderName=null;
-        if (question.length()==4){
+        if (question.length()==8){
             folderName="4 letters";
             textView.setVisibility(View.VISIBLE);
         }else{
             folderName="3 letters";
             textView.setVisibility(View.GONE);
         }
-        questionImage =(ImageView)findViewById(R.id.questionImage);
+        ImageView questionImage =(ImageView)findViewById(R.id.questionImage);
         questionImage.setImageBitmap(CommonUtil.getDataFromAsserts(this,folderName+"/"+question));
-        String temp=question.split("\\.")[0];
+        temp=question.split("\\.")[0];
+        Log.e("temp",""+temp);
         teacherOption=temp.length();
+        for (int i =0;i<teacherOption; i++){
+            TextView placeHolderView =(TextView)findViewById(getResources().getIdentifier("textAns"+i,"id",getPackageName()));
+            placeHolderView.setBackgroundResource(R.drawable.blank);
+        }
         setOption(temp);
         setMapValues();
-
+    }
+    public void getResolution(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point resolution = new Point();
+        display.getSize(resolution);
+        windowWidth=resolution.x;
+        windowHeight=resolution.y;
     }
     public boolean isTouch() {
         return isTouch;
@@ -106,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
     public void setTouch(boolean touch) {
         isTouch = touch;
     }
-    public ArrayList<String> getQuestionList(){
+
+    public void getQuestionList(){
+        ArrayList<String> threeLetterName= CommonUtil.listAssetFiles(this,"3 letters");
+        ArrayList<String> fourLetterName=CommonUtil.listAssetFiles(this,"4 letters");
         Collections.shuffle(threeLetterName);
         Collections.shuffle(fourLetterName);
         for (int i =0 ; i<=4;i++){
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         for (int j =0 ; j<=4;j++){
             questionList.add(fourLetterName.get(j));
         }
-        return questionList ;
     }
 
     public void checkAnswer(){
@@ -129,10 +129,9 @@ public class MainActivity extends AppCompatActivity {
             Log.e("id",""+id);
             TextView option=(TextView)findViewById(id);
             option.setText(tempList.get(i));
-            int k=(i+1)%10;
+            int k=(i+1)%8;
             option.setBackgroundResource(background[k]);
             option.setOnTouchListener(new DragAndDrop(this));
-
         }
     }
     public ArrayList<String> optionList(String imageName){
@@ -159,7 +158,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doComplete() {
-        Log.e("doComplete"   ,"doComplete");
+        Log.e("doComplete", "doComplete");
 
+        ArrayList correctlist=CommonUtil.spliteString(temp);
+        Log.e("correctlist","correctlist"+correctlist);
+        for (int i = 0; i < correctlist.size(); i++) {
+            if (correctlist.get(i).equals(map.get(i).getText().toString())){
+                map.get(i).setBackgroundResource(R.drawable.five);
+                Log.e("map","map"+map.get(i).getText().toString());
+            }else {
+                map.get(i).setBackgroundResource(R.drawable.four);
+            }
+        }
+        Handler  handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                counter++;
+                startApp();
+            }
+        },2000);
     }
 }
