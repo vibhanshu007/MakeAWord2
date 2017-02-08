@@ -179,4 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
         },2000);
     }
+    public void showHistory(){
+
+    }
 }
