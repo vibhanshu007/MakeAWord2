@@ -6,30 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private boolean isTouch;
     MainActivity mainActivity;
     int windowWidth,windowHeight;
     ArrayList<String> questionList;
     DragAndDrop dragAndDrop;
-    int counter=0,teacherOption;
+    int counter=8,teacherOption;
+    ArrayList<ArrayList<String>> resultList;
     String temp;
     HashMap<Integer,TextView> map;
     private static final int TOTAL_OPTIONS=8;
+    private static final int completeSheetCounter=10;
+    public static final String LETTER_THREE="3 letters";
+    public static final String LETTER_FOUR="4 letters";
     int background[] ={R.drawable.one,R.drawable.two,R.drawable.three,
             R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine,R.drawable.ten};
 
@@ -39,52 +39,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dragAndDrop = new DragAndDrop(mainActivity);
         map=new HashMap<Integer, TextView>();
+        resultList = new ArrayList<ArrayList<String>>();
         questionList = new ArrayList<String>();
         getResolution();
         CommonUtil.hideSystemUI(getWindow().getDecorView());
-
-
-        //For all around text creating..
-
-       /* for (int i =0;i<26;i++){
-            char st = (char)(65+i);
-            String textId = "text"+st;
-            final int textID = getResources().getIdentifier(textId,"id",getPackageName());
-            textView = (TextView)findViewById(textID);
-            textView.setHeight(50);
-            textView.setWidth(50);
-            textView.setText(String.valueOf(st));
-            textView.setTextColor(getResources().getColor(R.color.wight));
-            int k=(i+1)%10;
-            textView.setBackgroundResource(background[k]);
-            textView.setGravity(Gravity.CENTER);
-            textView.setOnTouchListener(new DragAndDrop(this));
-        }*/
-        //For button textOption..
         getQuestionList();
         startApp();
     }
 
     public void startApp(){
-
-
         String question=questionList.get(counter);
         TextView textView = (TextView) findViewById(R.id.textAns3);
         String folderName=null;
         if (question.length()==8){
-            folderName="4 letters";
+            folderName=LETTER_FOUR;
             textView.setVisibility(View.VISIBLE);
         }else{
-            folderName="3 letters";
+            folderName=LETTER_THREE;
             textView.setVisibility(View.GONE);
         }
         ImageView questionImage =(ImageView)findViewById(R.id.questionImage);
         questionImage.setImageBitmap(CommonUtil.getDataFromAsserts(this,folderName+"/"+question));
         temp=question.split("\\.")[0];
-        Log.e("temp",""+temp);
         teacherOption=temp.length();
         for (int i =0;i<teacherOption; i++){
-            TextView placeHolderView =(TextView)findViewById(getResources().getIdentifier("textAns"+i,"id",getPackageName()));
+            TextView placeHolderView =(TextView)findViewById(getResources().getIdentifier
+                    ("textAns"+i, "id",getPackageName()));
             placeHolderView.setBackgroundResource(R.drawable.blank);
         }
         setOption(temp);
@@ -106,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getQuestionList(){
-        ArrayList<String> threeLetterName= CommonUtil.listAssetFiles(this,"3 letters");
-        ArrayList<String> fourLetterName=CommonUtil.listAssetFiles(this,"4 letters");
+        ArrayList<String> threeLetterName= CommonUtil.listAssetFiles(this,LETTER_THREE);
+        ArrayList<String> fourLetterName=CommonUtil.listAssetFiles(this,LETTER_FOUR);
         Collections.shuffle(threeLetterName);
         Collections.shuffle(fourLetterName);
         for (int i =0 ; i<=4;i++){
@@ -118,9 +98,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void checkAnswer(){
-
-    }
     public void setOption(String imageName){
         ArrayList<String> tempList=optionList(imageName);
         Log.e("tempList",""+tempList);
@@ -134,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             option.setOnTouchListener(new DragAndDrop(this));
         }
     }
+
     public ArrayList<String> optionList(String imageName){
         ArrayList<String> tempList=CommonUtil.spliteString(imageName);
         Random random=new Random();
@@ -151,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         Collections.shuffle(tempList);
         return tempList;
     }
+
     public void setMapValues(){
         for (int i=0;i<teacherOption;i++){
             map.put(i,null);
@@ -162,24 +141,39 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList correctlist=CommonUtil.spliteString(temp);
         Log.e("correctlist","correctlist"+correctlist);
+        ArrayList<String> tempList=new ArrayList<String>();
+        tempList.add(temp);
         for (int i = 0; i < correctlist.size(); i++) {
-            if (correctlist.get(i).equals(map.get(i).getText().toString())){
+            String userAnswer=map.get(i).getText().toString();
+            tempList.add(userAnswer);
+            if (correctlist.get(i).equals(userAnswer)){
                 map.get(i).setBackgroundResource(R.drawable.five);
-                Log.e("map","map"+map.get(i).getText().toString());
+                Log.e("map","map"+userAnswer);
             }else {
                 map.get(i).setBackgroundResource(R.drawable.four);
             }
         }
+
+        resultList.add(tempList);
         Handler  handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 counter++;
-                startApp();
+                Log.e("counter = "+counter,"completeSheetCounter = "+completeSheetCounter);
+                if (counter==completeSheetCounter) {
+                    showHistory();
+                }else{
+                    startApp();
+                }
             }
         },2000);
     }
-    public void showHistory(){
 
+    public void showHistory(){
+        setContentView(R.layout.result_list);
+        ResultHistory resultHistory = new ResultHistory(this,R.layout.history,resultList);
+        Log.e("resultHistory","resultHistory"+resultHistory);
+        ((ListView)findViewById(R.id.result_list)).setAdapter(resultHistory);
     }
 }
