@@ -1,11 +1,15 @@
 package com.pensar.tabkids.appstore.makeaword;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.util.Property;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,19 +22,19 @@ import java.util.List;
 
 public class ResultHistory extends ArrayAdapter{
     Context context;
+    Button backButton;
     List<ArrayList<String>> list;
-    LayoutInflater inflater;
     public ResultHistory(Context context, int resource, List objects) {
         super(context, resource, objects);
         this.context=context;
         this.list=objects;
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+        @Override
+        public View getView ( int position, View convertView, ViewGroup parent){
 
-        LayoutInflater inflater = (LayoutInflater) context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.
+                    getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView = inflater.inflate(R.layout.history, null);
             Log.e("convert", "" + rowView.findViewById(R.id.history_image));
@@ -58,13 +62,10 @@ public class ResultHistory extends ArrayAdapter{
 
                 if (correctlist.get(i).equals(userAnswer)) {
                     historyOption.setBackgroundResource(R.drawable.five);
-                    Log.e("map", "map" + userAnswer);
                 } else {
                     historyOption.setBackgroundResource(R.drawable.four);
                 }
             }
-        return rowView;
+            return rowView;
+        }
     }
-
-
-}

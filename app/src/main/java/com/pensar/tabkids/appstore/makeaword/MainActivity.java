@@ -2,6 +2,7 @@ package com.pensar.tabkids.appstore.makeaword;
 
 import android.graphics.Point;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,18 +14,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private boolean isTouch;
-    MainActivity mainActivity;
     int windowWidth,windowHeight;
     ArrayList<String> questionList;
-    DragAndDrop dragAndDrop;
     int counter=8,teacherOption;
     ArrayList<ArrayList<String>> resultList;
     String temp;
+    TextToSpeech toSpeech;
     HashMap<Integer,TextView> map;
     private static final int TOTAL_OPTIONS=8;
     private static final int completeSheetCounter=10;
@@ -37,7 +38,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dragAndDrop = new DragAndDrop(mainActivity);
+        toSpeech=new TextToSpeech(this,
+                new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int i) {
+                        if (toSpeech ==null) {
+                            toSpeech.setLanguage(Locale.UK);
+                        }
+                    }
+                });
         map=new HashMap<Integer, TextView>();
         resultList = new ArrayList<ArrayList<String>>();
         questionList = new ArrayList<String>();
@@ -45,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         CommonUtil.hideSystemUI(getWindow().getDecorView());
         getQuestionList();
         startApp();
+
     }
 
     public void startApp(){
@@ -61,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView questionImage =(ImageView)findViewById(R.id.questionImage);
         questionImage.setImageBitmap(CommonUtil.getDataFromAsserts(this,folderName+"/"+question));
         temp=question.split("\\.")[0];
+        questionImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonUtil.startSound(getApplicationContext(),toSpeech,temp);
+            }
+        });
         teacherOption=temp.length();
         for (int i =0;i<teacherOption; i++){
             TextView placeHolderView =(TextView)findViewById(getResources().getIdentifier
@@ -100,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setOption(String imageName){
         ArrayList<String> tempList=optionList(imageName);
-        Log.e("tempList",""+tempList);
         for (int i=0;i<TOTAL_OPTIONS;i++){
             int id=getResources().getIdentifier("text"+i,"id",getPackageName());
             Log.e("id",""+id);
@@ -137,10 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doComplete() {
-        Log.e("doComplete", "doComplete");
-
         ArrayList correctlist=CommonUtil.spliteString(temp);
-        Log.e("correctlist","correctlist"+correctlist);
         ArrayList<String> tempList=new ArrayList<String>();
         tempList.add(temp);
         for (int i = 0; i < correctlist.size(); i++) {
@@ -148,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
             tempList.add(userAnswer);
             if (correctlist.get(i).equals(userAnswer)){
                 map.get(i).setBackgroundResource(R.drawable.five);
-                Log.e("map","map"+userAnswer);
             }else {
                 map.get(i).setBackgroundResource(R.drawable.four);
             }
@@ -160,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 counter++;
-                Log.e("counter = "+counter,"completeSheetCounter = "+completeSheetCounter);
                 if (counter==completeSheetCounter) {
                     showHistory();
                 }else{
@@ -173,7 +183,18 @@ public class MainActivity extends AppCompatActivity {
     public void showHistory(){
         setContentView(R.layout.result_list);
         ResultHistory resultHistory = new ResultHistory(this,R.layout.history,resultList);
-        Log.e("resultHistory","resultHistory"+resultHistory);
         ((ListView)findViewById(R.id.result_list)).setAdapter(resultHistory);
+        findViewById(R.id.backToHome).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_main);
+                counter=0;
+                map.clear();
+                resultList.clear();
+                questionList.clear();
+                getQuestionList();
+                startApp();
+            }
+        });
     }
 }

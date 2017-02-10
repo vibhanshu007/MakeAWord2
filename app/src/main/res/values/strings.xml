@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">MakeAWord</string>
-    <string name="title_activity_welcome">Make A Word</string>
-    <string name="heding">Make a Word</string>
+    <string name="heding"><u>Make a Word</u></string>
 </resources>

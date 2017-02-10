@@ -6,11 +6,15 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Locale;
+
 
 /**
  * Created by root on 2/2/17.
@@ -91,5 +95,17 @@ public class CommonUtil {
     public static int id(Context context,int position,String commonText,String type){
         int id=context.getResources().getIdentifier(commonText+""+position,type,context.getPackageName());
         return id;
+    }
+    public static void startSound(Context context, final TextToSpeech toSpeech, final String text){
+
+        //textToSpeech.setPitch(1.5f);
+        toSpeech.setSpeechRate(0.5f);
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        },context.getResources().getInteger(R.integer.speech_delay_time));
     }
 }
