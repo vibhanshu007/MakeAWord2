@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
     <ListView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/report_text"
         android:layout_gravity="center">
     </ListView>
 
     <Button
         android:id="@+id/backToHome"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="@dimen/back_to_home"
+        android:layout_height="@dimen/back_to_home"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:background="@drawable/icn2"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/report_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/report"
+        style="@style/TextHeding"
+        android:textAlignment="center"
+        android:background="@color/report"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -2,37 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:weightSum="6"
-    android:layout_height="50dp">
+    android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/history_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/history_image"
+            android:layout_height="@dimen/history_image"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_marginRight="@dimen/fifty_dp"
             />
         <TextView
             android:id="@+id/historyOption0"
-            android:layout_weight=".5"
             android:layout_gravity="center"
             style="@style/TextStyle" />
         <TextView
             android:id="@+id/historyOption1"
-            android:layout_weight=".5"
             android:layout_gravity="center"
             style="@style/TextStyle"/>
         <TextView
             android:id="@+id/historyOption2"
-            android:layout_weight=".5"
             android:layout_gravity="center"
             style="@style/TextStyle"/>
 
         <TextView
             android:id="@+id/historyOption3"
-            android:layout_weight=".5"
             android:layout_gravity="center"
             style="@style/TextStyle"/>
-
 
 </LinearLayout>

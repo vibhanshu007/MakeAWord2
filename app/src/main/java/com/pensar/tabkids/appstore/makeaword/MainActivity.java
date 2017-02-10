@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isTouch;
     int windowWidth,windowHeight;
     ArrayList<String> questionList;
-    int counter=8,teacherOption;
+    int counter=0,teacherOption;
     ArrayList<ArrayList<String>> resultList;
     String temp;
     TextToSpeech toSpeech;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
         setOption(temp);
         setMapValues();
+        setTouch(false);
     }
     public void getResolution(){
         Display display = getWindowManager().getDefaultDisplay();
@@ -118,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> tempList=optionList(imageName);
         for (int i=0;i<TOTAL_OPTIONS;i++){
             int id=getResources().getIdentifier("text"+i,"id",getPackageName());
-            Log.e("id",""+id);
             TextView option=(TextView)findViewById(id);
             option.setText(tempList.get(i));
             int k=(i+1)%8;
@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHistory(){
         setContentView(R.layout.result_list);
+        TextView reportText = (TextView)findViewById(R.id.backToHome);
         ResultHistory resultHistory = new ResultHistory(this,R.layout.history,resultList);
         ((ListView)findViewById(R.id.result_list)).setAdapter(resultHistory);
         findViewById(R.id.backToHome).setOnClickListener(new View.OnClickListener() {

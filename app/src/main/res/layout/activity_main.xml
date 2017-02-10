@@ -5,26 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/startActivityColor"
+    android:splitMotionEvents="false"
     tools:context="com.pensar.tabkids.appstore.makeaword.MainActivity">
 
-    <!--<include
-        android:id="@+id/left"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        layout="@layout/text_layout_vertical_left"
-        android:layout_alignParentLeft="true" />
-    <include
-        android:id="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/text_layout_horizontal_top"
-        android:layout_alignParentTop="true" />
-    <include
-        android:id="@+id/right"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        layout="@layout/text_layout_vertical_right"
-        android:layout_alignParentRight="true" />-->
     <include
         android:id="@+id/buttom"
         android:layout_width="match_parent"
@@ -49,15 +32,26 @@
         android:weightSum="4"
         android:layout_below="@+id/textHeading"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp">
+        android:layout_marginTop="@dimen/layout_top_margin">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/questionImage"
-            android:layout_width="192dp"
-            android:layout_height="192dp"
+            android:layout_width="@dimen/question_image"
+            android:layout_height="@dimen/question_image"
             android:layout_weight="1"
             android:background="@drawable/rectangle_shape"
             android:layout_gravity="center" />
+        <ImageView
+            android:layout_width="@dimen/sound_image_dp"
+            android:layout_height="@dimen/sound_image_dp"
+            android:layout_alignRight="@+id/questionImage"
+            android:layout_alignTop="@+id/questionImage"
+            android:layout_margin="@dimen/five"
+            android:src="@drawable/sound"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -70,35 +64,27 @@
             <TextView
                 android:id="@+id/textAns0"
                 style="@style/TextStyle"
-                android:textSize="25dp"
+                android:textSize="@dimen/option_textsize"
                 android:background="@drawable/blank"
                 android:layout_weight=".5"/>
             <TextView
                 android:id="@+id/textAns1"
                 style="@style/TextStyle"
                 android:background="@drawable/blank"
-                android:textSize="25dp"
+                android:textSize="@dimen/option_textsize"
                 android:layout_weight=".5"/>
             <TextView
                 android:id="@+id/textAns2"
                 style="@style/TextStyle"
                 android:background="@drawable/blank"
-                android:textSize="25dp"
+                android:textSize="@dimen/option_textsize"
                 android:layout_weight=".5"/>
             <TextView
                 android:id="@+id/textAns3"
                 style="@style/TextStyle"
                 android:background="@drawable/blank"
-                android:textSize="25dp"
+                android:textSize="@dimen/option_textsize"
                 android:layout_weight=".5"/>
-            <!--<TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:gravity="center"
-                android:textSize="25dp"
-                android:background="@drawable/rectangle_shape"
-                android:layout_weight=".5"/>-->
 
         </LinearLayout>
 

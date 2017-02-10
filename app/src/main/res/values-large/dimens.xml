@@ -12,4 +12,5 @@
     <dimen name="fifty_dp">50dp</dimen>
     <dimen name="sound_image_dp">30dp</dimen>
     <dimen name="report_text_size">30sp</dimen>
+
 </resources>
