@@ -5,9 +5,10 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -69,12 +70,34 @@ public class MainActivity extends AppCompatActivity {
             textView.setVisibility(View.GONE);
         }
         ImageView questionImage =(ImageView)findViewById(R.id.questionImage);
+        final ImageView soundImage =(ImageView)findViewById(R.id.soundImage);
         questionImage.setImageBitmap(CommonUtil.getDataFromAsserts(this,folderName+"/"+question));
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.flip_anim);
+        questionImage.startAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                soundImage.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                soundImage.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         temp=question.split("\\.")[0];
         questionImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonUtil.startSound(getApplicationContext(),toSpeech,temp);
+                if (!isTouch) {
+                    CommonUtil.startSound(getApplicationContext(), toSpeech, temp);
+                }
             }
         });
         teacherOption=temp.length();
@@ -155,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList correctlist=CommonUtil.spliteString(temp);
         ArrayList<String> tempList=new ArrayList<String>();
         tempList.add(temp);
+        boolean status =true;
         for (int i = 0; i < correctlist.size(); i++) {
             String userAnswer=map.get(i).getText().toString();
             tempList.add(userAnswer);
@@ -162,10 +186,16 @@ public class MainActivity extends AppCompatActivity {
                 map.get(i).setBackgroundResource(R.drawable.five);
             }else {
                 map.get(i).setBackgroundResource(R.drawable.four);
+                status = false;
+
             }
         }
-
         resultList.add(tempList);
+        if (status){
+            CommonUtil.startSound(this,toSpeech,"Right");
+        }else {
+                CommonUtil.startSound(this,toSpeech,"Wrong");
+        }
         Handler  handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override

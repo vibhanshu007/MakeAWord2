@@ -8,13 +8,6 @@
     android:splitMotionEvents="false"
     tools:context="com.pensar.tabkids.appstore.makeaword.MainActivity">
 
-    <include
-        android:id="@+id/buttom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/text_layout_horizontal_buttom"
-        android:layout_alignParentBottom="true"/>
-
     <TextView
         android:id="@+id/textHeading"
         android:layout_width="wrap_content"
@@ -25,14 +18,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <include
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/text_layout_horizontal_buttom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="4"
+        android:layout_marginTop="@dimen/twenty_dp"
         android:layout_below="@+id/textHeading"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/layout_top_margin">
+        android:layout_centerHorizontal="true">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -45,6 +47,7 @@
             android:background="@drawable/rectangle_shape"
             android:layout_gravity="center" />
         <ImageView
+            android:id="@+id/soundImage"
             android:layout_width="@dimen/sound_image_dp"
             android:layout_height="@dimen/sound_image_dp"
             android:layout_alignRight="@+id/questionImage"
